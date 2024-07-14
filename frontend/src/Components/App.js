@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import Map from './Map';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import SignInSignUp from './SignInSignUp';
 import axios from 'axios';
 
 const App = () => {
   const [markers, setMarkers] = useState([]);
-  const [searchKey, setSearchKey] = useState('');
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
+  const fetchMarkers = async (key) => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/markers?key=${searchKey}`);
+      const response = await axios.get(`http://localhost:5000/api/markers?key=${key}`);
       setMarkers(response.data);
     } catch (error) {
       console.error('Error fetching markers:', error);
@@ -17,29 +17,14 @@ const App = () => {
   };
 
   return (
-    <div>
-      <header>
-        <h1>Welcome to Decentralised Library</h1>
-        <p>A community-driven platform for users to list, exchange, give away, and receive books.</p>
-        <button id="cta-button">Get Started</button>
-      </header>
-      <main>
-        <img src="https://via.placeholder.com/600x400" alt="Landing Page Image" />
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            placeholder="Search by key"
-            value={searchKey}
-            onChange={(e) => setSearchKey(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </form>
-        <Map markers={markers} />
-      </main>
-      <footer>
-        <p>© 2024 My Landing Page. All rights reserved.</p>
-      </footer>
-    </div>
+    <Router>
+      <div>
+        <Routes>
+          <Route path="/" element={<Home fetchMarkers={fetchMarkers} markers={markers} />} />
+          <Route path="/signin" element={<SignInSignUp />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
