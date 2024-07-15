@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './Home';
-import SignInSignUp from './SignInSignUp';
+import SignIn from './SignIn';
+import Signup from './Signup';
 import axios from 'axios';
+import PrivateRoute from './PrivateRoute';
+import ProtectedComponent from './ProtectedComponent';
 
 const App = () => {
   const [markers, setMarkers] = useState([]);
@@ -21,7 +24,9 @@ const App = () => {
       <div>
         <Routes>
           <Route path="/" element={<Home fetchMarkers={fetchMarkers} markers={markers} />} />
-          <Route path="/signin" element={<SignInSignUp />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/protected" element={<PrivateRoute element={ProtectedComponent} />} />
         </Routes>
       </div>
     </Router>

@@ -17,6 +17,7 @@ const Home = ({ fetchMarkers, markers }) => {
         <h1>Welcome to Decentralised Library</h1>
         <p>A community-driven platform for users to list, exchange, give away, and receive books.</p>
         <button id="signin-button" onClick={() => navigate('/signin')}>Sign In</button>
+        <button id="signup-button" onClick={() => navigate('/signup')}>Sign Up</button>
       </header>
       <main>
         <img src="https://via.placeholder.com/600x400" alt="Landing Page" />
