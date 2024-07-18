@@ -1,7 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Map from './Map';
+import { useNavigate } from 'react-router-dom';
 
 const AuthenticatedHome = ({ fetchMarkers, markers }) => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleBackButton = (event) => {
+      event.preventDefault();
+      navigate('/authenticated-home', { replace: true });
+    };
+
+    window.addEventListener('popstate', handleBackButton);
+
+    return () => {
+      window.removeEventListener('popstate', handleBackButton);
+    };
+  }, [navigate]);
+
   const [key, setKey] = useState('');
 
   const handleSubmit = (event) => {

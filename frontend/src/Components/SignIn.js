@@ -7,13 +7,12 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Correctly initialize useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/api/users/signin', { email, password });
-      console.log(res.data); // Log the response
       localStorage.setItem('token', res.data.token); // Store the token in localStorage
       setMessage('Sign in successful');
       navigate('/authenticated-home'); // Redirect to authenticated home page

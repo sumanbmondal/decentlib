@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './Home';
 import SignIn from './SignIn';
-import Signup from './Signup';
+import SignUp from './Signup';
 import axios from 'axios';
 import PrivateRoute from './PrivateRoute';
 import ProtectedComponent from './ProtectedComponent';
 import AuthenticatedHome from './AuthenticatedHome';
+import useAuth from '../Hooks/useAuth';
 
 const App = () => {
+  const isAuthenticated = useAuth();
   const [markers, setMarkers] = useState([]);
 
   const fetchMarkers = async (key) => {
@@ -24,9 +26,10 @@ const App = () => {
     <Router>
       <div>
         <Routes>
-          <Route path="/" element={<Home fetchMarkers={fetchMarkers} markers={markers} />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={isAuthenticated ? <Navigate to="/authenticated-home" /> : <Navigate to="/home" />} />
+          <Route path="/home" element={<Home fetchMarkers={fetchMarkers} markers={markers} />} />
+          <Route path="/signin" element={isAuthenticated ? <Navigate to="/authenticated-home" /> : <SignIn />} />
+          <Route path="/signup" element={ <SignUp />} />
           <Route path="/authenticated-home" element={<AuthenticatedHome fetchMarkers={fetchMarkers} markers={markers} />} />
           <Route path="/protected" element={<PrivateRoute element={ProtectedComponent} />} />
         </Routes>
