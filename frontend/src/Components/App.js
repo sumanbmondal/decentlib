@@ -6,6 +6,7 @@ import Signup from './Signup';
 import axios from 'axios';
 import PrivateRoute from './PrivateRoute';
 import ProtectedComponent from './ProtectedComponent';
+import AuthenticatedHome from './AuthenticatedHome';
 
 const App = () => {
   const [markers, setMarkers] = useState([]);
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/" element={<Home fetchMarkers={fetchMarkers} markers={markers} />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/authenticated-home" element={<AuthenticatedHome fetchMarkers={fetchMarkers} markers={markers} />} />
           <Route path="/protected" element={<PrivateRoute element={ProtectedComponent} />} />
         </Routes>
       </div>
