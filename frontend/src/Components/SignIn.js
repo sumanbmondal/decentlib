@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const SignIn = () => {
+const SignIn = ({handleLogin}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -15,6 +15,7 @@ const SignIn = () => {
       const res = await axios.post('http://localhost:5000/api/users/signin', { email, password });
       localStorage.setItem('token', res.data.token); // Store the token in localStorage
       setMessage('Sign in successful');
+      handleLogin(res.data.token);
       navigate('/authenticated-home'); // Redirect to authenticated home page
     } catch (err) {
       setMessage(err.response.data.message || 'Error signing in');

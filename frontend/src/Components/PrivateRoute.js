@@ -1,10 +1,8 @@
-// src/components/PrivateRoute.js
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import useAuth from '../Hooks/useAuth';
 
 const PrivateRoute = ({ element: Component }) => {
-  const isAuthenticated = useAuth(); // Use custom hook to get authentication status
+  const isAuthenticated = localStorage.getItem('token') !== null;
 
   return isAuthenticated ? <Component /> : <Navigate to="/signin" />;
 };

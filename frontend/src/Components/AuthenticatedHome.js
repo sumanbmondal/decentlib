@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Map from './Map';
 import { useNavigate } from 'react-router-dom';
+import TopBar from './TopBar';
 
-const AuthenticatedHome = ({ fetchMarkers, markers }) => {
+const AuthenticatedHome = ({ fetchMarkers, markers, onLogout, onAddBook }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +29,7 @@ const AuthenticatedHome = ({ fetchMarkers, markers }) => {
     return (
         <div>  
           <main>
+          <TopBar onLogout={onLogout} onAddBook={onAddBook} />
             <img src="https://via.placeholder.com/600x400" alt="Landing Page" />
             <form onSubmit={handleSubmit}>
               <input
