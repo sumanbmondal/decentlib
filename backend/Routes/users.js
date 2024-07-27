@@ -61,7 +61,8 @@ router.post('/signin', async (req, res) => {
     // Create and return a JWT
     const payload = {
       user: {
-        id: user.id
+        id: user.id,
+        username: user.name
       }
     };
 
@@ -71,7 +72,7 @@ router.post('/signin', async (req, res) => {
       { expiresIn: '1h' },
       (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        res.json({ token, username: user.username });
       }
     );
   } catch (error) {

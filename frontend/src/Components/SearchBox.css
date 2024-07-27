@@ -1,0 +1,45 @@
+/* styles.css */
+
+.search-box-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 30px; /* Add space below the search box */
+}
+
+.search-box {
+  position: relative;
+  width: 100%;
+  max-width: 500px; /* Make the search box wider */
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 50px; /* Add more padding for the icon */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 16px; /* Make the text size more readable */
+  color: #333; /* Darker text color for better contrast */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.search-input::placeholder {
+  color: #aaa; /* Lighter placeholder text color */
+}
+
+.search-input:focus {
+  border-color: #6200ea;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced focus shadow */
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px; /* Adjust the right position */
+  transform: translateY(-50%);
+  font-size: 20px; /* Adjust size as needed */
+  cursor: pointer;
+  color: #6200ea;
+}

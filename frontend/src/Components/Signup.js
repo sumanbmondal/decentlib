@@ -19,18 +19,20 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="auth-container">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="auth-form" onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Name"
+          className="auth-input"
+          placeholder="Username"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
         <input
           type="email"
+          className="auth-input"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -38,12 +40,13 @@ const Signup = () => {
         />
         <input
           type="password"
+          className="auth-input"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <button type="submit">Sign Up</button>
+        <button className="auth-button" type="submit">Sign Up</button>
       </form>
       {message && <p>{message}</p>}
     </div>

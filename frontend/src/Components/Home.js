@@ -1,35 +1,30 @@
-import React, { useState } from 'react';
+// Home.js
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Map from './Map';
+import SearchBox from './SearchBox'; // Import the updated SearchBox component
+import logo from './library_vector_art.png';
 
 const Home = ({ fetchMarkers, markers }) => {
-  const [key, setKey] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSearch = (key) => {
     fetchMarkers(key);
   };
 
   return (
     <div>
       <header>
-        <h1>Welcome to Decentralised Library</h1>
+        <h1>Welcome to Decentralized Library</h1>
         <p>A community-driven platform for users to list, exchange, give away, and receive books.</p>
-        <button id="signin-button" onClick={() => navigate('/signin')}>Sign In</button>
-        <button id="signup-button" onClick={() => navigate('/signup')}>Sign Up</button>
+        <div className="button-container">
+        <button id="signin-button" className="sign-button" onClick={() => navigate('/signin')}>Sign In</button>
+        <button id="signup-button" className="sign-button" onClick={() => navigate('/signup')}>Sign Up</button>
+        </div>
       </header>
       <main>
-        <img src="https://via.placeholder.com/600x400" alt="Landing Page" />
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={key}
-            onChange={(e) => setKey(e.target.value)}
-            placeholder="Enter search key"
-          />
-          <button type="submit">Search</button>
-        </form>
+      <img src={logo} alt="Logo" className="logo" />
+        <SearchBox onSearch={handleSearch} /> {/* Use the updated SearchBox component */}
         <Map markers={markers} />
       </main>
       <footer>

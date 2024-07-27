@@ -40,6 +40,46 @@
   #cta-button:hover {
     background-color: #0056b3;
   }
+
+  .logo {
+    max-width: 50%; /* Adjust to your desired width */
+    height: auto;     /* Maintain aspect ratio */
+    margin: 10px;     /* Spacing around the logo */
+    margin-left: 25%;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center buttons horizontally */
+    margin-top: 20px; /* Space above buttons */
+  }
+
+  .sign-button{
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    border: none;
+    background-color: #6200ea;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+
+  .sign-button:hover {
+    background-color: #3700b3; /* Darker shade on hover */
+  }
+  
+  .sign-button:active {
+    transform: scale(0.98); /* Slightly shrink on click */
+  }
+  
+  .sign-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.5); /* Focus effect */
+  }
   
   main img {
     max-width: 100%;
